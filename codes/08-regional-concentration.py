@@ -1,7 +1,7 @@
 import pandas as pd
 import duckdb
 
-mrio_versions = ['72', '62', '62c']
+mrio_versions = ['62c']
 
 for version in mrio_versions:
 

@@ -2,9 +2,10 @@ import pandas as pd
 import time
 from mrio import MRIO
 from utils import get_years, ind_pattern, aggregate_sectors, convert_dtypes, progress_check
+import duckdb
 
 start = time.time()
-mrio_versions = ['72', '62', '62c']
+mrio_versions = ['62c']
 
 for version in mrio_versions:
 
@@ -29,7 +30,7 @@ for version in mrio_versions:
             'va_flows': VBY.asvector().data
         })
         df = pd.concat([df, df_t], ignore_index=True)
-
+        duckdb.register('df', df)
     flows = aggregate_sectors(
         table = 'df',
         cols_index = ['t', 's', 'r'],

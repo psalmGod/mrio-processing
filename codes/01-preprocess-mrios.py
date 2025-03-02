@@ -4,8 +4,8 @@ import os
 import re
 import time
 
-folders = ['ADB MRIO, 72 economies', 'ADB MRIO, 62 economies', 'ADB MRIO constant price']
-versions = ['72', '62', '62c']
+folders = ['ADB MRIO constant price 2023']
+versions = ['62c']
 N, f = 35, 5
 
 start = time.time()
@@ -15,13 +15,13 @@ for folder, version in zip(folders, versions):
     output = f'mrio-{version}.parquet'
     mrio = pd.DataFrame()
 
-    files = [file for file in os.listdir(f'data/raw/{folder}') if re.match(r'^ADB.*MRIO', file)]
+    files = [file for file in os.listdir(f'data/{folder}') if re.match(r'^ADB.*MRIO', file)]
     files.sort()
 
     for file in files:
 
         year = re.search('[0-9]{4}', file).group()
-        mrio_t = pd.read_excel(f'data/raw/{folder}/{file}', skiprows=5, header=[0,1])
+        mrio_t = pd.read_excel(f'data/{folder}/{file}', skiprows=5, header=[0,1])
 
         # Deduce parameters
         mrio_t = mrio_t.drop(mrio_t.index[-1])

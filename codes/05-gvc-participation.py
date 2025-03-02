@@ -1,13 +1,13 @@
 import duckdb
 from utils import aggregate_sectors, convert_dtypes
 
-mrio_versions = ['72', '62', '62c']
+mrio_versions = ['62c']
 
 for version in mrio_versions:
 
     ed, summary = f'ed-{version}.parquet', f'summary-{version}.parquet'
     output = f'gvcp-{version}.parquet'
-
+    # duckdb.register('data/{ed}', f"'data/{ed}'",)
     df_es = aggregate_sectors(
         table = f"'data/{ed}'",
         filter = "breakdown='es'",

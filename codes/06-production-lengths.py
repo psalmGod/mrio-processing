@@ -5,7 +5,7 @@ from mrio import MRIO
 from utils import get_years, ind_pattern, aggregate_sectors, convert_dtypes, progress_check
 
 start = time.time()
-mrio_versions = ['72', '62', '62c']
+mrio_versions = ['62c']
 
 for version in mrio_versions:
 
@@ -64,7 +64,7 @@ for version in mrio_versions:
             'Y_GVC': VY_GVC.col_sum().data
         })
         df = pd.concat([df, df_t], ignore_index=True)
-
+        duckdb.register('df', df)
     apl = aggregate_sectors(
         table = 'df',
         cols_index = ['t', 's'],

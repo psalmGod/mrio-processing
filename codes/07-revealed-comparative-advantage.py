@@ -1,6 +1,6 @@
 import duckdb
 
-mrio_versions = ['72', '62', '62c']
+mrio_versions = ['62c']
 
 def table_query(breakdown, index, level):
     return(

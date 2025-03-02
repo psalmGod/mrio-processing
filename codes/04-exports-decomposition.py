@@ -4,7 +4,7 @@ from mrio import MRIO
 from utils import get_years, ind_pattern, convert_dtypes, progress_check
 
 start = time.time()
-mrio_versions = ['72', '62', '62c']
+mrio_versions = ['62c']
 
 for version in mrio_versions:
 
